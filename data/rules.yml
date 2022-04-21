@@ -1,0 +1,101 @@
+version: '2.0'
+# rules:
+#  - rule: activate subscribe form
+#    steps:
+#    - intent: subscribe
+#    - action: newsletter_form
+#    - active_loop: newsletter_form
+
+#  - rule: submit form
+#    condition:
+#    - active_loop: newsletter_form
+#    steps:
+#    - action: newsletter_form
+#    - active_loop: null
+#    - action: utter_subscribed
+
+ - rule: activate first_goal form
+   steps:
+   - intent: running
+   - action: first_goal_form
+   - active_loop: first_goal_form
+
+ - rule: submit first_goal form
+   condition:
+   - active_loop: first_goal_form
+   steps:
+   - action: first_goal_form
+   - active_loop: null
+  #  - slot_was_set:
+  #    - requested_slot: null
+  #  wait_for_user_input: false
+
+ - rule: activate goal form
+   steps:
+   - intent: set_goal
+   - action: goal_form
+   - active_loop: goal_form
+
+ - rule: submit goal form
+   condition:
+   - active_loop: goal_form
+   steps:
+   - action: goal_form
+   - active_loop: null
+  #  - slot_was_set:
+  #    - requested_slot: null
+  #  wait_for_user_input: false
+
+ - rule: activate importance form
+   steps:
+   - intent: importance
+   - action: importance_form
+   - active_loop: importance_form
+
+ - rule: submit importance form
+   condition:
+   - active_loop: importance_form
+   steps:
+   - action: importance_form
+   - active_loop: null
+  #  - slot_was_set:
+  #    - requested_slot: null
+  #  wait_for_user_input: false
+
+ - rule: activate deadline form
+   steps:
+   - intent: deadline
+   - action: deadline_form
+   - active_loop: deadline_form
+
+ - rule: submit deadline form
+   condition:
+   - active_loop: deadline_form
+   steps:
+   - action: deadline_form
+   - active_loop: null
+  #  - slot_was_set:
+  #    - requested_slot: null
+  #  wait_for_user_input: false 
+
+
+#   # The actions we want to run when the form is submitted.
+   #- action: utter_compliment_importance
+#    - action: utter_slots_values
+
+#   - rule: Activate form
+#   steps:
+#   - intent: request_names
+#   - action: name_form
+#   - active_loop: name_form
+
+# - rule: Submit form
+#   condition:
+#   - active_loop: name_form
+#   steps:
+#   - action: name_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_submit
+#   - action: utter_slots_values

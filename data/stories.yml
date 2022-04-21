@@ -1,0 +1,352 @@
+# how we think the interaction will go
+version: '2.0'
+stories:
+ 
+ - story: greet and set goal
+   steps:
+   - intent: greet
+   - action: utter_greet 
+   - action: utter_ask_for_mood
+   - intent: mood_curr
+   - action: action_answer_mood
+   - action: explain_bot
+   - intent: read_long_term
+   - action: utter_prompt_usage
+   - action: utter_explain_usage
+   - intent: confirm
+   - action: overview
+   - action: utter_start_conv
+   - intent: start_conv
+   - action: utter_ask_goal_type
+   - action: action_goal_type
+
+ - story: running path
+   steps:
+   - intent: running
+     entities: 
+     - goal_type: "running"
+   - slot_was_set: 
+     - goal_type: "running"
+   - action: utter_confirm_goal_type
+   - action: ask_first_goal
+   - action: first_goal_form
+   - active_loop: first_goal_form
+   - slot_was_set:
+     - first_goal: test132
+   - active_loop: null
+   - action: goal_response
+   - action: first_example
+   - intent: finished_reading
+   - action: second_example
+
+ - story: walking path
+   steps:
+   - intent: walking
+     entities: 
+     - goal_type: "walking"
+   - slot_was_set: 
+     - goal_type: "walking"
+   - action: utter_confirm_goal_type
+   - action: ask_first_goal
+   - action: first_goal_form
+   - active_loop: first_goal_form
+   - slot_was_set:
+     - first_goal: test123
+   - active_loop: null
+   - action: goal_response
+   - action: first_example
+   - intent: finished_reading
+   - action: second_example
+ 
+ - story: new goal
+   steps:
+   - intent: finished_examples
+   - action: timer
+   - action: opinion2_form
+   - active_loop: opinion2_form
+   - slot_was_set:
+     - opinion2: test
+   - active_loop: null
+   - action: check_length_opinion
+   - action: ask_goal
+   - action: goal_form
+   - active_loop: goal_form
+   - slot_was_set:
+     - goal: test
+   - active_loop: null
+   - action: check_length_goal
+   - action: intro_importance
+   - action: utter_ask_importance
+
+ - story: new goal 2
+   steps:
+   - intent: finished_examples
+   - action: timer
+   - action: opinion2_form
+   - active_loop: opinion2_form
+   - slot_was_set:
+     - opinion2: test
+   - active_loop: null
+   - action: check_length_opinion
+   - action: opinion2_form
+   - active_loop: opinion2_form
+   - slot_was_set:
+     - opinion2: test
+   - active_loop: null
+   - action: ask_goal
+   - action: goal_form
+   - active_loop: goal_form
+   - slot_was_set:
+     - goal: test
+   - active_loop: null
+   - action: check_length_goal
+   - action: intro_importance
+   - action: utter_ask_importance
+  
+ - story: new goal 3
+   steps:
+   - intent: finished_examples
+   - action: timer
+   - action: opinion2_form
+   - active_loop: opinion2_form
+   - slot_was_set:
+     - opinion2: test
+   - active_loop: null
+   - action: check_length_opinion
+   - action: opinion2_form
+   - active_loop: opinion2_form
+   - slot_was_set:
+     - opinion2: test
+   - active_loop: null
+   - action: ask_goal
+   - action: goal_form
+   - active_loop: goal_form
+   - slot_was_set:
+     - goal: test
+   - active_loop: null
+   - action: check_length_goal
+   - action: goal_form
+   - active_loop: goal_form
+   - slot_was_set:
+     - goal: test
+   - active_loop: null
+   - action: intro_importance
+   - action: utter_ask_importance
+
+ - story: importance
+   steps:
+   - intent: importance
+     entities:
+     - importance
+   - action: utter_confirm_importance
+   - action: utter_ask_why_importance
+   - action: importance_form
+   - active_loop: importance_form
+   - slot_was_set:
+     - importance_why: test
+   - active_loop: null
+   - action: check_length_importance
+   - action: intro_achievable
+   - action: utter_ask_achievable
+
+ - story: importance 2
+   steps:
+   - intent: importance
+     entities:
+     - importance
+   - action: utter_confirm_importance
+   - action: utter_ask_why_importance
+   - action: importance_form
+   - active_loop: importance_form
+   - slot_was_set:
+     - importance_why: test
+   - active_loop: null
+   - action: check_length_importance
+   - action: importance_form
+   - active_loop: importance_form
+   - slot_was_set:
+     - importance_why: test
+   - active_loop: null
+   - action: intro_achievable
+   - action: utter_ask_achievable
+  
+ - story: achievability and deadline
+   steps:
+   - intent: achievable
+   - slot_was_set:
+     - achievable
+   - action: achievability
+   - intent: set_deadline
+   - action: utter_intro_deadline
+   - action: utter_deadline_goal
+   - action: deadline_form
+   - active_loop: deadline_form
+   - slot_was_set:
+     - deadline
+   - active_loop: null
+   - action: check_date
+   - intent: confirm_deadline
+   - action: utter_summarize_goal
+   - action: utter_change_goal
+
+ - story: change goal (achievability)
+   steps:
+   - intent: change_goal_achievability
+   - action: change
+   - action: goal_form
+   - active_loop: goal_form
+   - slot_was_set:
+     - goal: test
+   - active_loop: null
+   - action: utter_hope_better_goal
+   - action: utter_intro_deadline
+   - action: deadline_form
+   - active_loop: deadline_form
+   - slot_was_set:
+     - deadline: test
+   - active_loop: null
+   - action: check_date
+   - intent: confirm_deadline
+   - action: utter_summarize_goal
+   - action: utter_change_goal
+
+ - story: change goal
+   steps:
+   - intent: goal_change
+   - action: change
+   - action: goal_form
+   - active_loop: goal_form
+   - slot_was_set:
+     - goal: test
+   - active_loop: null
+   - action: utter_summarize_goal
+   - action: utter_change_goal
+  
+ - story: change goal deadline
+   steps:
+   - intent: deadline_change
+   - action: change
+   - action: deadline_form
+   - active_loop: deadline_form
+   - slot_was_set:
+     - deadline: test
+   - active_loop: null
+   - action: check_date
+   - intent: confirm_deadline
+   - action: utter_summarize_goal
+   - action: utter_change_goal
+  
+ - story: finished goal setting
+   steps: 
+   - intent: finished
+   - action: save
+   - action: utter_congratulations
+   - action: utter_work_together
+   - action: utter_goodluck
+   - action: finish_conversation
+   - intent: goodbye
+   - action: conversation_over
+
+
+# 
+
+######################################################################################################
+
+#  - story: test goal change form 
+#    steps:
+#    - intent: greet
+#    - action: utter_change_goal
+#    - intent: goal_change
+#    - action: change
+#    - action: goal_form
+#    - active_loop: goal_form
+#    - slot_was_set:
+#      - goal
+#    - active_loop: null
+#    - action: utter_summarize_goal
+
+#  - story: test deadline change form 
+#    steps:
+#    - intent: greet
+#    - action: utter_change_goal
+#    - intent: deadline_change
+#    - action: change
+#    - action: deadline_form
+#    - active_loop: deadline_form
+#    - slot_was_set:
+#      - deadline
+#    - active_loop: null
+#    - action: utter_summarize_goal
+   
+#  - story: are you a bot
+#    steps:
+#    - intent: bot_challenge
+#    - action: utter_i_am_a_bot
+
+# - story: explain cuisine slot
+#   steps:
+#   - intent: request_restaurant
+#   - action: restaurant_form
+#   - active_loop: restaurant
+#   - slot_was_set:
+#     - requested_slot: cuisine
+#   - intent: explain
+#   - action: utter_explain_cuisine
+#   - action: restaurant_form
+#   - active_loop: null
+
+#    - action: utter_ask_goal
+#    - intent: set_goal
+#    - action: goal_form
+#    - active_loop: goal_form
+#    - slot_was_set:
+#      - goal: this is an example goal
+#    - active_loop: null
+#    - action: action_hello_world 
+#    - intent: agree
+#    - action: utter_example
+
+#  - story: example 
+#    steps:
+#    - intent: achievable
+#      entities: 
+#      - achievable
+#    - action: example_intro
+#    - slot_was_set:
+#      - example_intro
+#    - action: utter_example_intro
+#    - action: example_goalhow
+#    - slot_was_set:
+#      - example_goalhow
+#    - action: utter_example_goalhow
+#    - action: utter_ask_read
+
+#  - story: finish reading example
+#    steps:
+#    - intent: finished_reading
+#    - action: utter_summarize_goal
+  
+#  - story: finished_reading
+#    steps:
+#    - intent: finished_reading
+#   #  - action: utter_ask_opinion
+#    - action: opinion_form
+#    - active_loop: opinion_form
+#    - slot_was_set:
+#      - opinion
+#    - active_loop: null
+#    - action: second_example
+ 
+#  - story: more examples
+#    steps:
+#    - intent: second_example
+#    - action: second_example
+
+  #  - action: goal_form
+  #  - active_loop: goal_form
+  #  - slot_was_set:
+  #      - goal
+  #  - active_loop: null
+  #  - action: utter_ask_another_example
+  #  - intent: finished_examples
+  #  - action: utter_ask_importance

@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <!-- <h2> Goalbot v3.4 </h2> -->
+    <title>Jody</title>
+    <style>
+       html, body {
+       width: 100%;
+       height: 100%;
+       margin: 0;
+       padding: 0;
+       background-color: white;
+       }
+       #webchat {
+       width: inherit;
+       height: inherit;
+       margin: 0;
+       padding: 0;
+       background-color: white;
+       }
+    </style>
+  </head>
+  <body>
+    <script>!(function () {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const userid = urlParams.get('userid');
+      
+      // console.log(userid)
+
+        let e = document.createElement("script"),
+          t = document.head || document.getElementsByTagName("head")[0];
+        (e.src =
+          "https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.1/lib/index.js"),
+          // Replace 1.x.x with the version that you want
+          (e.async = !0),
+          (e.onload = () => {
+            window.WebChat.default(
+              { 
+                initPayload: "/greet",
+                customData: {"language":"en", "userid": userid},
+                socketUrl: "http://localhost:5005",
+                hideWhenNotConnected: false,
+                title: "Jody",
+                subtitle: "",
+                embedded: true,
+                fullScreenMode: true,
+                // showFullScreenButton: true,
+                params: {
+                  storage: "session"
+                  }
+              },
+              null
+            );
+          }),
+          t.insertBefore(e, t.firstChild);
+      })();
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var hideSender = function() {
+            if( $('.rw-replies').length || $('#wave').length || $('.rw-message').length == 0){
+                $("textarea").prop('disabled', true);
+                $("textarea").prop('placeholder', "Use one of the buttons to answer.");
+            }
+        
+            else {
+              $("textarea").prop('disabled', false);
+              $("textarea").prop('placeholder', "Type a message...");
+            }
+        }
+        setInterval(hideSender, 250);
+    </script>
+  </body>
+</html>

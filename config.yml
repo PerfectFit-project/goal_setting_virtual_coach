@@ -1,0 +1,29 @@
+# 
+language: en
+
+# taking text input, extracting numbers from it (transformations)
+pipeline:
+  - name: WhitespaceTokenizer # break text into words (whitespaces)
+  - name: RegexFeaturizer # regular expressions
+  - name: LexicalSyntacticFeaturizer 
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier # classifier that does intents (what is the user trying to say) and
+                         # entities (things that the user is referring to that chatbot knows about)
+    epochs: 100
+  - name: EntitySynonymMapper
+  - name: ResponseSelector
+    epochs: 100
+
+# dialog policies, determines course of the conversation, what do I say next
+policies: 
+  - name: MemoizationPolicy # if we have seen this in stories, follow that path
+  - name: RulePolicy # if one of the provided rules is triggered, do what the rule says (rules for form for example)
+  - name: TEDPolicy # transformer driven policy, neural network...
+    max_history: 5 # attention span of the assistant, bigger = longer to train, but might get a better result
+    epochs: 100 # rounds of training
+    # ^ these hyperparameters are specifically for the policy
+    

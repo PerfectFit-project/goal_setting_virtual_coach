@@ -1,0 +1,398 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- inform:
+    use_entities: true
+- set_goal:
+    use_entities: true
+- running:
+    use_entities: true
+- walking:
+    use_entities: true
+- change_goal:
+    use_entities: true
+- importance:
+    use_entities: true
+- achievable:
+    use_entities: true
+- finished_reading:
+    use_entities: true
+- change:
+    use_entities: true
+- goal_change:
+    use_entities: true
+- deadline_change:
+    use_entities: true
+- finished:
+    use_entities: true
+- second_example:
+    use_entities: true
+- finished_examples:
+    use_entities: true
+- set_deadline:
+    use_entities: true
+- change_goal_achievability:
+    use_entities: true
+- mood_cur:
+    use_entities: true
+- mood_curr:
+    use_entities: true
+- confirm:
+    use_entities: true
+- confirm_deadline:
+    use_entities: true
+- read_long_term:
+    use_entities: true
+- start_conv:
+    use_entities: true
+- goodbye:
+    use_entities: true
+entities:
+- first_goal
+- goal_type
+- importance
+- deadline
+- achievable
+- opinion2
+- mood
+slots:
+
+  goal:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  goal_type:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  importance:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  importance_why:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  achievable:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  deadline:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  first_goal:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  mood:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: ''
+    auto_fill: true
+    influence_conversation: false
+  opinion2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  start_time1:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  start_time2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  read_first:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  read_second:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    
+responses:
+  utter_greet:
+  - text: Hi there 👋, nice to see you here.
+  utter_ask_for_mood:
+  - buttons:
+    - payload: /mood_curr{{"mood":"satisfied"}}
+      title: Satisfied
+    - payload: /mood_curr{{"mood":"pleased"}}
+      title: Pleased
+    - payload: /mood_curr{{"mood":"delighted"}}
+      title: Delighted
+    - payload: /mood_curr{{"mood":"happy"}}
+      title: Happy
+    - payload: /mood_curr{{"mood":"glad"}}
+      title: Glad
+    - payload: /mood_curr{{"mood":"excited"}}
+      title: Excited
+    - payload: /mood_curr{{"mood":"aroused"}}
+      title: Aroused
+    - payload: /mood_curr{{"mood":"astonished"}}
+      title: Astonished
+    - payload: /mood_curr{{"mood":"alarmed"}}
+      title: Alarmed
+    - payload: /mood_curr{{"mood":"angry"}}
+      title: Angry
+    - payload: /mood_curr{{"mood":"annoyed"}}
+      title: Annoyed
+    - payload: /mood_curr{{"mood":"distressed"}}
+      title: Distressed
+    - payload: /mood_curr{{"mood":"afraid"}}
+      title: Afraid
+    - payload: /mood_curr{{"mood":"frustrated"}}
+      title: Frustrated
+    - payload: /mood_curr{{"mood":"miserable"}}
+      title: Miserable
+    - payload: /mood_curr{{"mood":"depressed"}}
+      title: Depressed
+    - payload: /mood_curr{{"mood":"gloomy"}}
+      title: Gloomy
+    - payload: /mood_curr{{"mood":"tense"}}
+      title: Tense
+    - payload: /mood_curr{{"mood":"droopy"}}
+      title: Droopy
+    - payload: /mood_curr{{"mood":"sad"}}
+      title: Sad
+    - payload: /mood_curr{{"mood":"tired"}}
+      title: Tired
+    - payload: /mood_curr{{"mood":"bored"}}
+      title: Bored
+    - payload: /mood_curr{{"mood":"sleepy"}}
+      title: Sleepy
+    - payload: /mood_curr{{"mood":"serene"}}
+      title: Serene
+    - payload: /mood_curr{{"mood":"relaxed"}}
+      title: Relaxed
+    - payload: /mood_curr{{"mood":"calm"}}
+      title: Calm
+    - payload: /mood_curr{{"mood":"tranquil"}}
+      title: Tranquil
+    - payload: /mood_curr{{"mood":"content"}}
+      title: Content
+    - payload: /mood_curr{{"mood":"neutral"}}
+      title: Neutral
+    text: |
+      How are you feeling today? Please choose one:
+  utter_mood_positive_valence_high_arousal_quadrant:
+  - text: Yay, always good to hear that somebody is feeling {mood}!
+  - text: Awesome, you must be having a good day!
+  - text: Fantastic, that's very good to hear!
+  - text: Great, I'm happy to hear that that you're feeling {mood}!
+  - text: Fantastic, I'm happy to hear that!
+  utter_mood_positive_valence_low_arousal_quadrant:
+  - text: Nice, that's good to hear.
+  - text: Nice, I'm glad to hear that you're feeling {mood}.
+  - text: Nice, I'm glad to hear that.
+  - text: Nice, that's always good to hear.
+  utter_mood_negative_valence_low_arousal_quadrant:
+  - text: I hate to hear that you're feeling {mood}. I hope you feel better soon! Meanwhile, maybe this conversation can help to cheer you up a bit.
+  - text: Aww it doesn't feel good to hear that. Hopefully you feel better soon!
+  - text: Oh I'm so sorry that you're not having a good day. I hope it gets better soon and that I can cheer you up a little!
+  - text: That's a shame that you're not feeling well today. Hopefully you feel better soon!
+  - text: So sorry about that! Feel better soon!
+  utter_mood_negative_valence_high_arousal_quadrant:
+  - text: I'm really sorry to hear that you're feeling {mood}. I hope you feel better soon!
+  - text: Aww I'm so sorry to hear this. Hopefully you feel less {mood} soon!
+  - text: Oh that's a shame that you're not having a good day. I hope it gets better soon and that I can distract you a bit.
+  - text: I hate to hear that today isn't a good day for you. Hopefully you feel better soon and that it's okay to proceed with this session!
+  - text: Awww what a shame. Hopefully you feel less {mood} soon!
+  utter_mood_neutral:
+  - text: I see, I guess that's not too bad.
+  - text: Ah, sounds like you're having a pretty average day.
+  - text: Hm, that's not too bad I guess.
+  - text: I see, seems like you're doing okay then.
+  - text: Ah well, could be worse I guess.
+  utter_bot_name:
+  - text: My name is Jody. I am here to help you set a goal for becoming more physically active.
+  utter_prompt_usage:
+  - text: Before we start, let me explain how you can communicate with me.
+  utter_explain_usage:
+  - buttons:
+    - payload: /confirm
+      title: Okay, that's clear
+    - payload: /confirm
+      title: Sounds good!
+    text: Most of the time, you can just click on one of the buttons like you already did. If no buttons appear, just write something in the text field below.
+  utter_start_conv:
+  - text: "Now you should know what to expect. Let's get started!"
+    buttons:
+    - payload: /start_conv
+      title: "Sure"
+    - payload: /start_conv
+      title: Yes!
+  utter_ask_goal_type:
+  - text: As I mentioned earlier, we are going to set a long-term running or walking goal. 
+  utter_long_term:
+  - buttons:
+    - payload: /read_long_term
+      title: I understand what a long-term goal is!
+    text: Long-term goals say what you would like to achieve in the future with some time and planning.🎯.  
+  utter_ask_importance:
+  - buttons:
+    - payload: /importance{{"importance":"family"}}
+      title: Family 👪
+    - payload: /importance{{"importance":"health"}}
+      title: Health 🍎 
+    - payload: /importance{{"importance":"relationships"}}
+      title: Relationships 💕
+    - payload: /importance{{"importance":"personal growth"}}
+      title: Personal growth 🌱
+    - payload: /importance{{"importance":"work"}}
+      title: Work 💼
+    - payload: /importance{{"importance":"friends"}}
+      title: Friends 💛
+    text: |
+      This goal is important for your:
+  utter_confirm_importance:
+  - text: Ah, good choice.
+  utter_ask_why_importance:
+  - text: I can understand that your {importance} matters to you. Could you tell me more about why is your goal important for your {importance}?
+  utter_ask_achievable:
+  - buttons:
+    - payload: /achievable{{"achievable":"1"}}
+      title: 1 - not achievable
+    - payload: /achievable{{"achievable":"2"}}
+      title: '2'
+    - payload: /achievable{{"achievable":"3"}}
+      title: '3'
+    - payload: /achievable{{"achievable":"4"}}
+      title: '4'
+    - payload: /achievable{{"achievable":"5"}}
+      title: '5'
+    - payload: /achievable{{"achievable":"6"}}
+      title: '6'
+    - payload: /achievable{{"achievable":"7"}}
+      title: 7 - easily achievable
+    text: |
+      How achievable is your goal **{goal}** to you? Select a number between 1 and 7 where 1 is not achievable and 7 is easily achievable.
+  utter_deadline_goal:
+  - text: When would you like to have achieved your goal **{goal}**? 
+  utter_ask_deadline:
+  - text: |
+     Please write down a date in the following format **dd-mm-yyyy**.
+  utter_summarize_goal:
+  - text: 'You have set the following goal: **{goal}**, and you want to achieve this goal by **{deadline}**.'
+  utter_change_goal:
+  - buttons:
+    - payload: /finished
+      title: That is my goal! ✔️
+    - payload: /goal_change
+      title: I want to change my goal 🎯
+    - payload: /deadline_change
+      title: I want to change the goal deadline 📅
+    text: Now that you see your whole goal, does this goal reflect on what you want to achieve, or is there something you want to change?
+  utter_congratulations:
+  - text: Congratulations! 🎉 You can be proud of yourself, you have set your long-term {goal_type} goal.
+  utter_work_together:
+  - text: We are going to work together to help you achieve this goal.
+  utter_confirm_goal_type:
+  - text: Good, {goal_type} is a great way to become more active!
+  utter_ask_first_goal:
+  - text: |
+      *You could for example mention how long, how far, how often, or where you would like to go {goal_type}*. 
+  utter_ask_opinion2:
+  - text: |
+      What can you take away from these examples for yourself?
+
+      *Think of your own goal and how you could achieve it.*
+  utter_remind_goal:
+  - text: 'This is the goal you wrote down first: **{first_goal}**'
+  utter_hope_better_goal:
+  - text: Thanks, I hope your goal fits you better now!
+  utter_goodluck:
+  - text: I believe we can do it!
+  utter_goodbye: 
+  - buttons:
+    - payload: /goodbye
+      title: Goodbye 👋
+    text: It was a pleasure to talk to you. Have a nice day! 😊
+  utter_intro_deadline:
+  - text: We are almost finished! We only need to think of a deadline for you goal 📅.
+  utter_okay:
+  - text: That's okay, we can do that!
+
+actions:
+- '...'
+- utter_greet
+- utter_explain_bot
+- utter_start_conv
+- utter_ask_importance
+- utter_confirm_importance
+- utter_ask_why_importance
+- utter_compliment_importance
+- utter_ask_achievable
+- utter_ask_deadline
+- utter_summarize_goal
+- utter_change_goal
+- utter_congratulations
+- utter_confirm_goal_type
+- utter_ask_opinion2
+- utter_remind_goal
+- utter_hope_better_goal
+- utter_goodluck
+- utter_goodbye
+- utter_intro_deadline
+- utter_okay
+- utter_deadline_goal
+- action_goal_type
+- action_answer_mood
+- change
+- second_example
+- achievability
+- first_example
+- goal_response
+- ask_goal
+- check_date
+- ask_second_example
+- intro_importance
+- intro_achievable
+- timer
+- utter_long_term
+- save
+- finish_conversation
+- check_length_opinion
+- check_length_goal
+- check_length_importance
+- explain_bot
+- overview
+- ask_first_goal
+- conversation_over
+
+forms:
+  first_goal_form:
+    first_goal:
+    - type: from_text
+  opinion2_form:
+    opinion2:
+    - type: from_text
+  goal_form:
+    goal:
+    - type: from_text
+  importance_form:
+    importance_why:
+    - type: from_text
+  deadline_form:
+    deadline:
+    - type: from_text
+e2e_actions: []

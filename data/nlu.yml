@@ -1,0 +1,71 @@
+nlu:
+- intent: greet
+  examples: |
+    - Hi
+    - Hey!
+    - Hallo
+    - Good day
+    - Good morning
+    - Hello
+    - Hoi
+    - Hiya
+    - Hi there
+  
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+
+# - intent: subscribe
+#   examples: |
+#     - I want to get the newsletter
+#     - Can you send me the newsletter?
+#     - Can you sign me up for the newsletter?
+
+# - intent: inform
+#   examples: |
+#     - My email is example@example.com
+#     - random@example.com
+#     - Please send it to anything@example.com
+#     - Email is something@example.com
+
+# - intent: bot_challenge
+#   examples: |
+#     - Are you a bot?
+#     - am I talking to a human?
+#     - is this a chatbot?
+#     - chatbot?
+#     - are you a chatbot?
+
+# - intent: set_goal
+#   examples: |
+#    - [set_goal]{"entity":"goal"}
+#     - My goal is to walk for 1 hour
+#     - I want to run for 30 minutes
+#     - I hope to be able to walk 15000 steps
+#     - I wish that I can walk to work every day
+#     - The goal I want to set is run three times every week
+#     - I would like to walk every day after dinner
+#     - I want to be able to run for 30 minutes without getting tired
+#     - I would like to walk 10km
+#     - I want to walk 10000 steps
+#     - I want to walk up the stairs every time I see one
+
+# - intent: running
+#   examples: |
+#     - [running]{"entity":"goal_type"}
+#  # - I want to set a [running]{"entity":"goal_type"} goal
+#   # - I want to [run]{"entity":"goal_type"}
+#     # - I'd like to set a [running]{"entity":"goal_type"} goal
+
+# - intent: walking
+#   examples: |
+#     - [walking]{"entity":"goal_type"}
+# - I want to set a [walking]{"entity":"goal_type"} goal
+    # - I want to [walk]{"entity":"goal_type"}
+    # - I'd like to set a [walking]{"entity":"goal_type"} goal
+
+
+#rasa shell nlu
+#rasa interactive
+#rasa shell -v
