@@ -1,6 +1,5 @@
 <html>
   <head>
-    <!-- <h2> Goalbot v3.4 </h2> -->
     <title>Jody</title>
     <style>
        html, body {
@@ -24,8 +23,6 @@
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       const userid = urlParams.get('userid');
-      
-      // console.log(userid)
 
         let e = document.createElement("script"),
           t = document.head || document.getElementsByTagName("head")[0];
@@ -44,7 +41,6 @@
                 subtitle: "",
                 embedded: true,
                 fullScreenMode: true,
-                // showFullScreenButton: true,
                 params: {
                   storage: "session"
                   }
