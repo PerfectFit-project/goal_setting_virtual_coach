@@ -1,19 +1,12 @@
 # Goal-setting dialogue for physical activity with a virtual coach
 This github repository contains the code for the chatbot Jody that is created for the thesis project: Goal-setting dialogue for physical activity with a virtual coach. 
-This chatbot was used for an experiment with 39 participants 
-
-## Experiment flow
-- Recruitment in Prolific
-- Pre-questionnaire
-- Conversation with the virtual coach
-- Post-questionnaire
-
 Please refer to our [OSF pre-registration](https://osf.io/4duwh/) for more details on our experiment.
 
 ## Dialog flow
 
 The figure below visualizes the structure of the dialogue with Jody.
-<img src = "dialog_flow.png" width = "400" title="Dialog Flow">
+
+<img src = "dialogue_flow.png" width = "700" title="Dialog Flow">
 
 ## System architecture
 
