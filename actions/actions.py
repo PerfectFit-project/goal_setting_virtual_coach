@@ -1,16 +1,11 @@
 # This files contains your custom actions which can be used to run
 # custom Python code.
 
-
 ## if you want to run code, that would go in the actions.py file (python).
 # code that you create and action, if you need action to be triggered add to stories, add to list of actions in domain file, if the action 
 
-#
 # See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
-
-
-# This is a simple example for a custom action which utters "Hello World!"
 
 from cgitb import text
 from typing import Any, Text, Dict, List
@@ -53,7 +48,7 @@ class ActionAnswerMood(Action):
 
     async def run(self, dispatcher, tracker, domain):
 
-        curr_mood = tracker.get_slot('mood') #tracker.latest_message['entities'][0]['value']
+        curr_mood = tracker.get_slot('mood') 
 
         if curr_mood == "neutral":
             dispatcher.utter_message(response="utter_mood_neutral")
@@ -127,9 +122,8 @@ class FirstGoal(Action):
         goal_type =  tracker.get_slot('goal_type')
         dispatcher.utter_message(text="Let's think about the " + goal_type + " goal you want to achieve.")
         dispatcher.utter_message(text="Don't worry, this is not your final goal yet! We will also look at some examples of other people later to help you make your goal more specific.")
-        dispatcher.utter_message(text="What " + goal_type + " goal would you like to achieve?")
-        # dispatcher.utter_message(text="*You could for example mention how long, how far, how often, or where you would like to go " + goal_type + "*.")
-    
+        dispatcher.utter_message(text="What " + goal_type + " goal would you like to achieve?")    
+        
         return[]      
 
 
@@ -215,8 +209,6 @@ class FirstExample(Action):
         index = user_examples.loc[user_id]['example1']
         intro1 = "🧍* " + goals.loc[index]['introduction']+"*"
         goalhow1 = "**"+"🎯 " + goals.loc[index]['goal'] + " " + goals.loc[index]['how']+"**"
-        # intro1 = "\n \"🧍 **Hi, my name is Mary. I tend to define myself as a person with a normal body in terms of weight. Anyway, I am interested in doing physical activities because I think my health would benefit from it.**\""
-        # goalhow1 = "\n \" 🎯**I started running for 2 km now I run 4 km. I achieved this by forcing myself to go out running at least 1 time per week.**\""
 
         start_time1 = time.perf_counter()
         dispatcher.utter_message(text="Now that you have an idea of the goal you want to achieve, let me show you two examples of people who achieved a running or walking goal.")
@@ -255,8 +247,6 @@ class SecondExample(Action):
         index = user_examples.loc[user_id]['example2']
         intro2 = "🧍* " + goals.loc[index]['introduction']+"*"
         goalhow2 = "**"+"🎯 " + goals.loc[index]['goal'] + " " + goals.loc[index]['how']+"**"
-        # intro2 = "\n \"🧍 **I'm 21 years old. I've practised volleyball for 7 years until I quit because of my school commitments. Then I've always kept myself trained: I run, walk, went to the gym for a while, but I realised that I prefer running through the streets over running on a treadmill.**\""
-        # goalhow2 = "\n \" 🎯**I was able to run 4 km in a row. I achieved this by walking almost every day and started running slowly.**\""
 
         start_time2 = time.perf_counter()
         dispatcher.utter_message(text="Here is how the person from the second example introduces themselves:")
@@ -358,7 +348,6 @@ class Achievability(Action):
             ]
             dispatcher.utter_message(text="That seems good.")
             dispatcher.utter_message(text="Setting realistic, achievable goals increases the chance of success.", buttons=buttons)
-            # return[FollowupAction("utter_intro_deadline")]
 
         return []
 
@@ -470,7 +459,6 @@ class Change(Action):
                 dispatcher.utter_message(text="Okay!")
                 dispatcher.utter_message(text="So you want to achieve your goal in around " + str(months) + " months by " + str(deadline) + ", is that correct?", buttons=buttons)
                 return[]
-
 
     # Save slots to a file
     class Save(Action):
